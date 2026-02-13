@@ -303,8 +303,8 @@ def create_price_prediction_model(sequence_length=30, n_features=10):
 POST /api/v1/auth/register
 Request:
 {
-  "phone_number": "+919876543210",
-  "name": "Ravi Kumar",
+  "phone_number": "+919073848777",
+  "name": "Subrata Pramanik",
   "language": "hi"
 }
 Response:
@@ -317,7 +317,7 @@ Response:
 POST /api/v1/auth/verify
 Request:
 {
-  "phone_number": "+919876543210",
+  "phone_number": "+919073848777",
   "otp": "123456"
 }
 Response:
