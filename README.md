@@ -246,7 +246,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Email:** pmm2024003@iiita.ac.in 
 - **Ph no :** 9073848777
 
-## 🙏 Acknowledgments
+## 🙏 Acknowledgments 🙏
 
 - AWS AI for Bharat Hackathon
 - India Meteorological Department (IMD)
