@@ -1,7 +1,7 @@
 {
-  "name": "agrismart-mobile",
+  "name": "EasyAgri-AI-mobile",
   "version": "1.0.0",
-  "description": "AgriSmart AI Mobile Application",
+  "description": "EasyAgri-AI Mobile Application",
   "main": "index.js",
   "scripts": {
     "android": "react-native run-android",
