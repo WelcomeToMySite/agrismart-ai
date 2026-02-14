@@ -1,5 +1,5 @@
 """
-AgriSmart AI - Backend API
+EasyAgri-AI- Backend API
 Main FastAPI application entry point
 """
 
@@ -9,7 +9,7 @@ from pydantic import BaseModel
 import uvicorn
 
 app = FastAPI(
-    title="AgriSmart AI API",
+    title="EasyAgri-AI API",
     description="Intelligent Farming Assistant for Rural India",
     version="1.0.0"
 )
@@ -52,7 +52,7 @@ async def root():
     """
     return HealthResponse(
         status="healthy",
-        message="AgriSmart AI API is running",
+        message="EasyAgri-AI API is running",
         version="1.0.0"
     )
 
