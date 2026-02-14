@@ -121,7 +121,7 @@ zip -r function.zip .
 
 # Deploy using AWS CLI
 aws lambda update-function-code \
-  --function-name agrismart-disease-detection \
+  --function-name EasyAgri AI-disease-detection \
   --zip-file fileb://function.zip
 ```
 
@@ -129,7 +129,7 @@ aws lambda update-function-code \
 
 ```bash
 # Build image
-docker build -t agrismart-backend .
+docker build -t EasyAgri AI-backend .
 
 # Run container
 docker run -p 8000:8000 agrismart-backend
@@ -139,7 +139,7 @@ docker run -p 8000:8000 agrismart-backend
 
 ```
 # Database
-DATABASE_URL=postgresql://user:password@localhost:5432/agrismart
+DATABASE_URL=postgresql://user:password@localhost:5432/EasyAgri AI
 
 # AWS
 AWS_ACCESS_KEY_ID=your_key
