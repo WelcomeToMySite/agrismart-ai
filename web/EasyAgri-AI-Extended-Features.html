@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyAgri AI - Extended Features</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 15px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #4CAF50;
+            font-size: 2.2em;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        .subtitle {
+            color: #666;
+            text-align: center;
+            font-size: 0.95em;
+            margin-bottom: 25px;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 25px 0;
+        }
+        .feature {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        .feature:hover {
+            background: #e8f5e9;
+            border-color: #4CAF50;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+        .feature-icon { font-size: 2.5em; margin-bottom: 8px; }
+        .feature-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 4px;
+            font-size: 0.95em;
+        }
+        .feature-desc {
+            font-size: 0.8em;
+            color: #666;
+            line-height: 1.3;
+        }
+        .cta {
+            text-align: center;
+            margin-top: 22px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.9em;
+            margin: 4px;
+            transition: transform 0.3s;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-primary { background: #4CAF50; color: white; }
+        .btn-secondary { background: #2196F3; color: white; }
+        .btn-download {
+            background: #FF9800;
+            color: white;
+            margin: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .btn:hover { transform: scale(1.05); }
+        .team {
+            text-align: center;
+            margin-top: 22px;
+            padding-top: 16px;
+            border-top: 2px solid #eee;
+            color: #666;
+            font-size: 0.8em;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.88);
+            z-index: 1000;
+            padding: 12px;
+            overflow-y: auto;
+        }
+        .modal-content {
+            background: white;
+            max-width: 750px;
+            margin: 18px auto;
+            padding: 35px;
+            border-radius: 16px;
+            position: relative;
+            animation: slideIn 0.3s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-35px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .close {
+            position: absolute;
+            right: 16px;
+            top: 16px;
+            font-size: 26px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+        .close:hover { color: #333; }
+        .modal h2 {
+            color: #4CAF50;
+            margin-bottom: 16px;
+            font-size: 1.7em;
+        }
+        .demo-section {
+            margin: 16px 0;
+            padding: 16px;
+            background: #f5f5f5;
+            border-radius: 9px;
+        }
+        .demo-section h3 {
+            color: #333;
+            margin-bottom: 11px;
+            font-size: 1.15em;
+        }
+        .result-box {
+            background: #e8f5e9;
+            padding: 16px;
+            border-radius: 9px;
+            margin-top: 14px;
+            border-left: 4px solid #4CAF50;
+        }
+        .loading {
+            text-align: center;
+            padding: 16px;
+            color: #666;
+        }
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4CAF50;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            animation: spin 1s linear infinite;
+            margin: 14px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .download-section {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 9px;
+            padding: 16px;
+            margin-top: 16px;
+            text-align: center;
+        }
+        .download-section h4 {
+            color: #ff9800;
+            margin-bottom: 11px;
+        }
+        .download-options {
+            display: flex;
+            gap: 7px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .input-field {
+            width: 100%;
+            padding: 11px;
+            margin: 9px 0;
+            border: 2px solid #ddd;
+            border-radius: 7px;
+            font-size: 0.95em;
+            transition: border-color 0.3s;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+        select.input-field {
+            cursor: pointer;
+        }
+        textarea.input-field {
+            min-height: 80px;
+            resize: vertical;
+            font-family: inherit;
+        }
+        .scheme-card {
+            background: white;
+            padding: 16px;
+            margin: 12px 0;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .community-post {
+            background: white;
+            padding: 16px;
+            margin: 12px 0;
+            border-radius: 8px;
+            border-left: 4px solid #2196F3;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin: 2px;
+        }
+        .badge-success { background: #e8f5e9; color: #2E7D32; }
+        .badge-warning { background: #fff3e0; color: #E65100; }
+        .badge-info { background: #e3f2fd; color: #1565C0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌾 EasyAgri AI - Extended Features</h1>
+        <p class="subtitle">Personalized Recommendations, Community & Government Support</p>
+        
+        <div class="features">
+            <div class="feature" onclick="showDemo('recommendations')">
+                <div class="feature-icon">📋</div>
+                <div class="feature-title">Farming Recommendations</div>
+                <div class="feature-desc">Get personalized crop & soil advice</div>
+            </div>
+            
+            <div class="feature" onclick="showDemo('community')">
+                <div class="feature-icon">👥</div>
+                <div class="feature-title">Community Platform</div>
+                <div class="feature-desc">Connect with farmers & experts</div>
+            </div>
+            
+            <div class="feature" onclick="showDemo('schemes')">
+                <div class="feature-icon">🏛️</div>
+                <div class="feature-title">Government Schemes</div>
+                <div class="feature-desc">Find subsidies & support programs</div>
+            </div>
+        </div>
+
+        <div class="cta">
+            <a href="index.html" class="btn btn-primary">
+                ← Back to Main Platform
+            </a>
+            <a href="https://github.com/WelcomeToMySite/EasyAgri-AI" class="btn btn-secondary" target="_blank">
+                View on GitHub
+            </a>
+        </div>
+
+        <div class="team">
+            <strong>Team Solution_Expert</strong><br>
+            AI for Bharat Hackathon 2026 | Built with ❤️ for Rural India
+        </div>
+    </div>
+
+    <!-- Personalized Farming Recommendations Modal -->
+    <div id="recommendationsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('recommendationsModal')">&times;</span>
+            <h2>📋 Personalized Farming Recommendations</h2>
+            
+            <div class="demo-section">
+                <h3>Enter Your Farm Details</h3>
+                <p style="color: #666; margin-bottom: 15px;">Get customized crop selection & farming advice</p>
+                
+                <select class="input-field" id="soilType">
+                    <option value="">Select Soil Type</option>
+                    <option value="clay">Clay Soil</option>
+                    <option value="loamy">Loamy Soil</option>
+                    <option value="sandy">Sandy Soil</option>
+                    <option value="silt">Silt Soil</option>
+                    <option value="peaty">Peaty Soil</option>
+                    <option value="chalky">Chalky Soil</option>
+                </select>
+                
+                <select class="input-field" id="season">
+                    <option value="">Select Current Season</option>
+                    <option value="kharif">Kharif (Monsoon)</option>
+                    <option value="rabi">Rabi (Winter)</option>
+                    <option value="zaid">Zaid (Summer)</option>
+                </select>
+                
+                <select class="input-field" id="farmSize">
+                    <option value="">Select Farm Size</option>
+                    <option value="small">Small (< 2 acres)</option>
+                    <option value="medium">Medium (2-10 acres)</option>
+                    <option value="large">Large (> 10 acres)</option>
+                </select>
+                
+                <select class="input-field" id="location">
+                    <option value="">Select State</option>
+                    <option value="maharashtra">Maharashtra</option>
+                    <option value="punjab">Punjab</option>
+                    <option value="up">Uttar Pradesh</option>
+                    <option value="wb">West Bengal</option>
+                    <option value="mp">Madhya Pradesh</option>
+                    <option value="karnataka">Karnataka</option>
+                    <option value="ap">Andhra Pradesh</option>
+                    <option value="rajasthan">Rajasthan</option>
+                </select>
+                
+                <button class="btn btn-primary" onclick="generateRecommendations()" style="width: 100%; margin-top: 10px;">
+                    🤖 Generate AI Recommendations
+                </button>
+                
+                <div id="recLoading" class="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>AI analyzing your farm conditions...</p>
+                </div>
+                
+                <div id="recResult" style="display: none;">
+                    <div id="recContent"></div>
+                    <div class="download-section">
+                        <h4>💾 Save Your Farming Plan</h4>
+                        <p style="color: #666; margin-bottom: 12px;">Download and keep for reference</p>
+                        <div class="download-options">
+                            <button class="btn btn-download" onclick="downloadResult('recommendations', 'pdf')">
+                                📄 Download PDF
+                            </button>
+                            <button class="btn btn-download" onclick="downloadResult('recommendations', 'image')">
+                                🖼️ Download Image
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Community Platform Modal -->
+    <div id="communityModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('communityModal')">&times;</span>
+            <h2>👥 Community Platform</h2>
+            
+            <div class="demo-section">
+                <h3>Ask a Question or Browse Discussions</h3>
+                
+                <textarea class="input-field" id="questionText" placeholder="Type your farming question here... (e.g., How to control aphids on cotton plants?)"></textarea>
+                
+                <button class="btn btn-primary" onclick="askQuestion()" style="width: 100%; margin-top: 5px;">
+                    💬 Post Question
+                </button>
+                
+                <div style="margin-top: 20px;">
+                    <h3 style="margin-bottom: 12px;">Recent Community Discussions</h3>
+                    <button class="btn btn-secondary" onclick="loadCommunityPosts()" style="width: 100%;">
+                        🔄 Load Recent Posts
+                    </button>
+                </div>
+                
+                <div id="communityLoading" class="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Loading community posts...</p>
+                </div>
+                
+                <div id="communityResult" style="display: none;">
+                    <div id="communityContent"></div>
+                    <div class="download-section">
+                        <h4>💾 Save Community Insights</h4>
+                        <div class="download-options">
+                            <button class="btn btn-download" onclick="downloadResult('community', 'pdf')">
+                                📄 Download PDF
+                            </button>
+                            <button class="btn btn-download" onclick="downloadResult('community', 'image')">
+                                🖼️ Download Image
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Government Schemes Modal -->
+    <div id="schemesModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('schemesModal')">&times;</span>
+            <h2>🏛️ Government Schemes Navigator</h2>
+            
+            <div class="demo-section">
+                <h3>Find Relevant Government Support Programs</h3>
+                
+                <select class="input-field" id="schemeCategory">
+                    <option value="">Select Scheme Category</option>
+                    <option value="subsidy">Agricultural Subsidies</option>
+                    <option value="loan">Loan & Credit Support</option>
+                    <option value="insurance">Crop Insurance</option>
+                    <option value="equipment">Equipment & Machinery</option>
+                    <option value="training">Training & Education</option>
+                    <option value="irrigation">Irrigation Support</option>
+                </select>
+                
+                <select class="input-field" id="schemeState">
+                    <option value="">Select Your State</option>
+                    <option value="all">All India Schemes</option>
+                    <option value="maharashtra">Maharashtra</option>
+                    <option value="punjab">Punjab</option>
+                    <option value="up">Uttar Pradesh</option>
+                    <option value="wb">West Bengal</option>
+                    <option value="karnataka">Karnataka</option>
+                </select>
+                
+                <button class="btn btn-primary" onclick="searchSchemes()" style="width: 100%; margin-top: 10px;">
+                    🔍 Search Schemes
+                </button>
+                
+                <div id="schemesLoading" class="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Searching government schemes database...</p>
+                </div>
+                
+                <div id="schemesResult" style="display: none;">
+                    <div id="schemesContent"></div>
+                    <div class="download-section">
+                        <h4>💾 Save Scheme Information</h4>
+                        <p style="color: #666; margin-bottom: 12px;">Download for application process</p>
+                        <div class="download-options">
+                            <button class="btn btn-download" onclick="downloadResult('schemes', 'pdf')">
+                                📄 Download PDF
+                            </button>
+                            <button class="btn btn-download" onclick="downloadResult('schemes', 'image')">
+                                🖼️ Download Image
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Download functionality
+        async function downloadResult(feature, format) {
+            const contentId = feature + 'Content';
+            const element = document.getElementById(contentId);
+            
+            if (!element) {
+                alert('❌ No result available. Please generate result first.');
+                return;
+            }
+
+            const today = new Date();
+            const dateStr = today.toISOString().split('T')[0];
+            const fileName = `EasyAgri_${feature}_${dateStr}`;
+
+            const downloadBtn = event.target;
+            const originalText = downloadBtn.innerHTML;
+            downloadBtn.innerHTML = '⏳ Processing...';
+            downloadBtn.disabled = true;
+
+            try {
+                if (format === 'image') {
+                    const canvas = await html2canvas(element, {
+                        backgroundColor: '#ffffff',
+                        scale: 2,
+                        logging: false
+                    });
+                    
+                    canvas.toBlob(function(blob) {
+                        const url = URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.href = url;
+                        link.download = fileName + '.png';
+                        link.click();
+                        URL.revokeObjectURL(url);
+                        
+                        downloadBtn.innerHTML = '✅ Downloaded!';
+                        setTimeout(() => {
+                            downloadBtn.innerHTML = originalText;
+                            downloadBtn.disabled = false;
+                        }, 2000);
+                    });
+                } else if (format === 'pdf') {
+                    const canvas = await html2canvas(element, {
+                        backgroundColor: '#ffffff',
+                        scale: 2,
+                        logging: false
+                    });
+                    
+                    const imgData = canvas.toDataURL('image/png');
+                    const pdf = new jspdf.jsPDF({
+                        orientation: canvas.width > canvas.height ? 'landscape' : 'portrait',
+                        unit: 'px',
+                        format: [canvas.width, canvas.height]
+                    });
+                    
+                    pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+                    pdf.save(fileName + '.pdf');
+                    
+                    downloadBtn.innerHTML = '✅ Downloaded!';
+                    setTimeout(() => {
+                        downloadBtn.innerHTML = originalText;
+                        downloadBtn.disabled = false;
+                    }, 2000);
+                }
+            } catch (error) {
+                console.error('Download error:', error);
+                downloadBtn.innerHTML = '❌ Error';
+                alert('Download failed. Please try again.');
+                setTimeout(() => {
+                    downloadBtn.innerHTML = originalText;
+                    downloadBtn.disabled = false;
+                }, 2000);
+            }
+        }
+
+        // Personalized Farming Recommendations
+        function generateRecommendations() {
+            const soilType = document.getElementById('soilType').value;
+            const season = document.getElementById('season').value;
+            const farmSize = document.getElementById('farmSize').value;
+            const location = document.getElementById('location').value;
+            
+            if (!soilType || !season || !farmSize || !location) {
+                alert('⚠️ Please fill all fields to get personalized recommendations');
+                return;
+            }
+            
+            document.getElementById('recLoading').style.display = 'block';
+            document.getElementById('recResult').style.display = 'none';
+            
+            setTimeout(() => {
+                const recommendations = {
+                    'clay-kharif': { crops: ['Rice', 'Cotton', 'Soybean'], reason: 'Clay soil retains water well, ideal for monsoon crops' },
+                    'loamy-rabi': { crops: ['Wheat', 'Mustard', 'Chickpea'], reason: 'Loamy soil perfect for winter crops with good drainage' },
+                    'sandy-zaid': { crops: ['Watermelon', 'Cucumber', 'Muskmelon'], reason: 'Sandy soil drains quickly, good for summer vegetables' },
+                    'default': { crops: ['Rice', 'Wheat', 'Maize'], reason: 'Versatile crops suitable for most conditions' }
+                };
+                
+                const key = `${soilType}-${season}`;
+                const rec = recommendations[key] || recommendations['default'];
+                
+                document.getElementById('recContent').innerHTML = `
+                    <div class="result-box">
+                        <h3 style="color: #4CAF50; margin-bottom: 15px;">🌱 Your Personalized Farming Plan</h3>
+                        
+                        <div style="background: white; padding: 16px; border-radius: 8px; margin: 12px 0;">
+                            <p><strong>📍 Location:</strong> ${location.charAt(0).toUpperCase() + location.slice(1)}</p>
+                            <p><strong>🌾 Soil Type:</strong> ${soilType.charAt(0).toUpperCase() + soilType.slice(1)} Soil</p>
+                            <p><strong>📅 Season:</strong> ${season.charAt(0).toUpperCase() + season.slice(1)}</p>
+                            <p><strong>📐 Farm Size:</strong> ${farmSize.charAt(0).toUpperCase() + farmSize.slice(1)}</p>
+                        </div>
+                        
+                        <div style="background: #e8f5e9; padding: 16px; border-radius: 8px; margin: 12px 0;">
+                            <h4 style="color: #2E7D32; margin-bottom: 10px;">✅ Recommended Crops</h4>
+                            ${rec.crops.map(crop => `
+                                <div style="background: white; padding: 12px; margin: 8px 0; border-radius: 6px; border-left: 4px solid #4CAF50;">
+                                    <strong>${crop}</strong>
+                                </div>
+                            `).join('')}
+                            <p style="margin-top: 12px; color: #666;">
+                                <strong>Why these crops?</strong><br>${rec.reason}
+                            </p>
+                        </div>
+                        
+                        <div style="background: white; padding: 16px; border-radius: 8px; margin: 12px 0;">
+                            <h4 style="color: #2196F3; margin-bottom: 10px;">💡 Additional Recommendations</h4>
+                            <p>✓ <strong>Soil Preparation:</strong> Add organic compost 2 weeks before sowing</p>
+                            <p>✓ <strong>Seed Selection:</strong> Use certified seeds from government approved sources</p>
+                            <p>✓ <strong>Irrigation:</strong> Drip irrigation recommended for water conservation</p>
+                            <p>✓ <strong>Fertilizers:</strong> Use balanced NPK ratio based on soil test</p>
+                            <p>✓ <strong>Pest Management:</strong> Integrated Pest Management (IPM) approach</p>
+                        </div>
+                        
+                        <div style="background: #fff3cd; padding: 14px; border-radius: 8px; margin-top: 12px;">
+                            <p style="color: #856404;">
+                                <strong>📞 Need Expert Advice?</strong><br>
+                                Consult your local Krishi Vigyan Kendra (KVK) for detailed soil testing and personalized guidance.
+                            </p>
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('recLoading').style.display = 'none';
+                document.getElementById('recResult').style.display = 'block';
+            }, 2000);
+        }
+
+        // Community Platform
+        function askQuestion() {
+            const question = document.getElementById('questionText').value.trim();
+            
+            if (!question) {
+                alert('⚠️ Please enter your question');
+                return;
+            }
+            
+            alert('✅ Question Posted Successfully!\n\nYour question has been submitted to the community. Farmers and agricultural experts will respond soon.\n\n💡 Tip: Check back in 24-48 hours for responses.');
+            document.getElementById('questionText').value = '';
+            loadCommunityPosts();
+        }
+
+        function loadCommunityPosts() {
+            document.getElementById('communityLoading').style.display = 'block';
+            document.getElementById('communityResult').style.display = 'none';
+            
+            setTimeout(() => {
+                const posts = [
+                    {
+                        author: 'Ramesh Kumar',
+                        location: 'Punjab',
+                        question: 'Best organic pesticide for aphids on cotton?',
+                        answers: 3,
+                        views: 156,
+                        category: 'Pest Control',
+                        time: '2 hours ago'
+                    },
+                    {
+                        author: 'Sunita Devi',
+                        location: 'Maharashtra',
+                        question: 'When to harvest soybean for maximum yield?',
+                        answers: 5,
+                        views: 234,
+                        category: 'Harvesting',
+                        time: '5 hours ago'
+                    },
+                    {
+                        author: 'Agricultural Expert',
+                        location: 'Krishi Vigyan Kendra',
+                        question: 'Government subsidy update: PM-KISAN Feb 2026',
+                        answers: 12,
+                        views: 892,
+                        category: 'Government Schemes',
+                        time: '1 day ago'
+                    },
+                    {
+                        author: 'Vijay Patel',
+                        location: 'Gujarat',
+                        question: 'Drip irrigation setup cost for 5 acres?',
+                        answers: 7,
+                        views: 421,
+                        category: 'Irrigation',
+                        time: '2 days ago'
+                    }
+                ];
+                
+                document.getElementById('communityContent').innerHTML = `
+                    <div class="result-box">
+                        <h3 style="color: #4CAF50; margin-bottom: 15px;">💬 Active Community Discussions</h3>
+                        
+                        ${posts.map(post => `
+                            <div class="community-post">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+                                    <div>
+                                        <strong style="color: #2196F3;">${post.author}</strong>
+                                        <span class="badge badge-info">${post.location}</span>
+                                        <span class="badge badge-warning">${post.category}</span>
+                                    </div>
+                                    <span style="color: #999; font-size: 0.85em;">${post.time}</span>
+                                </div>
+                                <p style="font-size: 1.05em; margin: 10px 0; color: #333;">
+                                    <strong>Q:</strong> ${post.question}
+                                </p>
+                                <div style="display: flex; gap: 15px; color: #666; font-size: 0.9em; margin-top: 10px;">
+                                    <span>💬 ${post.answers} answers</span>
+                                    <span>👁️ ${post.views} views</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                        
+                        <div style="background: #e3f2fd; padding: 16px; border-radius: 8px; margin-top: 16px;">
+                            <h4 style="color: #1976D2; margin-bottom: 10px;">🌟 Community Guidelines</h4>
+                            <p style="font-size: 0.9em; line-height: 1.6;">
+                                • Be respectful and helpful to fellow farmers<br>
+                                • Share practical experiences and solutions<br>
+                                • Ask clear, specific questions<br>
+                                • Verify advice with local agricultural experts
+                            </p>
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('communityLoading').style.display = 'none';
+                document.getElementById('communityResult').style.display = 'block';
+            }, 1500);
+        }
+
+        // Government Schemes
+        function searchSchemes() {
+            const category = document.getElementById('schemeCategory').value;
+            const state = document.getElementById('schemeState').value;
+            
+            if (!category || !state) {
+                alert('⚠️ Please select both category and state');
+                return;
+            }
+            
+            document.getElementById('schemesLoading').style.display = 'block';
+            document.getElementById('schemesResult').style.display = 'none';
+            
+            setTimeout(() => {
+                const schemes = [
+                    {
+                        name: 'Pradhan Mantri Kisan Samman Nidhi (PM-KISAN)',
+                        type: 'Financial Support',
+                        benefit: '₹6,000 per year in 3 installments',
+                        eligibility: 'All farmer families',
+                        application: 'Online at pmkisan.gov.in',
+                        status: 'Active - Accepting Applications'
+                    },
+                    {
+                        name: 'Kisan Credit Card (KCC)',
+                        type: 'Loan & Credit',
+                        benefit: 'Low-interest crop loans up to ₹3 lakh at 4% interest',
+                        eligibility: 'Farmers with land records',
+                        application: 'Any Nationalized Bank',
+                        status: 'Active - Ongoing'
+                    },
+                    {
+                        name: 'Pradhan Mantri Fasal Bima Yojana (PMFBY)',
+                        type: 'Crop Insurance',
+                        benefit: 'Comprehensive crop insurance at 2% premium',
+                        eligibility: 'All farmers (loanee & non-loanee)',
+                        application: 'Banks, CSCs, Agriculture Department',
+                        status: 'Active - Season-wise enrollment'
+                    },
+                    {
+                        name: 'Sub-Mission on Agricultural Mechanization (SMAM)',
+                        type: 'Equipment Subsidy',
+                        benefit: '40-50% subsidy on farm equipment',
+                        eligibility: 'Individual farmers and FPOs',
+                        application: 'State Agriculture Department',
+                        status: 'Active - State-specific'
+                    }
+                ];
+                
+                document.getElementById('schemesContent').innerHTML = `
+                    <div class="result-box">
+                        <h3 style="color: #4CAF50; margin-bottom: 15px;">🎯 Matching Government Schemes</h3>
+                        
+                        <div style="background: white; padding: 14px; border-radius: 8px; margin-bottom: 14px;">
+                            <p><strong>📂 Category:</strong> ${category.charAt(0).toUpperCase() + category.slice(1)}</p>
+                            <p><strong>📍 State:</strong> ${state === 'all' ? 'All India' : state.charAt(0).toUpperCase() + state.slice(1)}</p>
+                            <p style="color: #4CAF50; margin-top: 8px;"><strong>Found ${schemes.length} relevant schemes</strong></p>
+                        </div>
+                        
+                        ${schemes.map((scheme, index) => `
+                            <div class="scheme-card">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+                                    <h4 style="color: #2E7D32; flex: 1;">${index + 1}. ${scheme.name}</h4>
+                                    <span class="badge badge-success">${scheme.status}</span>
+                                </div>
+                                
+                                <div style="margin: 12px 0; line-height: 1.8;">
+                                    <p><strong>Type:</strong> ${scheme.type}</p>
+                                    <p style="background: #e8f5e9; padding: 10px; border-radius: 6px; margin: 8px 0;">
+                                        <strong>💰 Benefit:</strong> ${scheme.benefit}
+                                    </p>
+                                    <p><strong>✅ Eligibility:</strong> ${scheme.eligibility}</p>
+                                    <p><strong>📝 How to Apply:</strong> ${scheme.application}</p>
+                                </div>
+                                
+                                <div style="background: #f5f5f5; padding: 10px; border-radius: 6px; margin-top: 10px;">
+                                    <p style="font-size: 0.9em; color: #666;">
+                                        <strong>💡 Tip:</strong> Keep your Aadhaar card, land records, and bank account details ready for application
+                                    </p>
+                                </div>
+                            </div>
+                        `).join('')}
+                        
+                        <div style="background: #fff3cd; padding: 16px; border-radius: 8px; margin-top: 16px;">
+                            <h4 style="color: #F57C00; margin-bottom: 10px;">📞 Need Help with Application?</h4>
+                            <p style="font-size: 0.95em; line-height: 1.6;">
+                                • Visit your nearest Common Service Centre (CSC)<br>
+                                • Contact Agriculture Department helpline: 1800-180-1551<br>
+                                • Visit district Krishi Bhawan for offline applications<br>
+                                • Check official websites for detailed guidelines
+                            </p>
+                        </div>
+                        
+                        <div style="background: #e3f2fd; padding: 16px; border-radius: 8px; margin-top: 12px;">
+                            <p style="color: #1565C0; font-size: 0.9em;">
+                                <strong>⚠️ Beware of Frauds:</strong> Government schemes are FREE. Never pay any agent or middleman for application assistance. Apply directly or through authorized government centers only.
+                            </p>
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('schemesLoading').style.display = 'none';
+                document.getElementById('schemesResult').style.display = 'block';
+            }, 1800);
+        }
+
+        // Modal Functions
+        function showDemo(type) {
+            const modals = {
+                'recommendations': 'recommendationsModal',
+                'community': 'communityModal',
+                'schemes': 'schemesModal'
+            };
+            document.getElementById(modals[type]).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => modal.style.display = 'none');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
