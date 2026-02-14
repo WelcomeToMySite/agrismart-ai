@@ -1,4 +1,4 @@
-# AgriSmart AI - Mobile App
+# EasyAgri AI - Mobile App
 
 React Native mobile application for iOS and Android.
 
@@ -109,7 +109,7 @@ cd android
 
 ```bash
 # Open in Xcode
-open ios/AgriSmartAI.xcworkspace
+open ios/EasyAgri-AI.xcworkspace
 
 # Build using Xcode: Product > Archive
 ```
@@ -132,7 +132,7 @@ npm run e2e
 Create a `.env` file:
 
 ```env
-API_BASE_URL=https://api.agrismart-ai.com
+API_BASE_URL=https://api.EasyAgri-AI.com
 AWS_REGION=ap-south-1
 ENABLE_ANALYTICS=true
 ```
