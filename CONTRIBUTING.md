@@ -1,6 +1,6 @@
-# Contributing to AgriSmart AI
+# Contributing to EasyAgri AI
 
-First off, thank you for considering contributing to AgriSmart AI! It's people like you that make AgriSmart AI such a great tool for empowering rural farmers.
+First off, thank you for considering contributing to EasyAgri AI! It's people like you that make EasyAgri AI such a great tool for empowering rural farmers.
 
 ## Table of Contents
 
@@ -25,7 +25,7 @@ This project and everyone participating in it is governed by our commitment to c
 ## Getting Started
 
 1. Fork the repository
-2. Clone your fork: `git clone https://github.com/YOUR_USERNAME/agrismart-ai.git`
+2. Clone your fork: `git clone https://github.com/YOUR_USERNAME/EasyAgri-AI.git`
 3. Create a branch: `git checkout -b feature/your-feature-name`
 4. Make your changes
 5. Push to your fork: `git push origin feature/your-feature-name`
@@ -260,7 +260,7 @@ Contributors will be recognized in:
 - Project documentation
 - Release notes
 
-Thank you for making AgriSmart AI better! 🌾
+Thank you for making EasyAgri AI better! 🌾
 
 ---
 
