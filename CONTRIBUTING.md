@@ -264,5 +264,5 @@ Thank you for making AgriSmart AI better! 🌾
 
 ---
 
-**Team Solution_Expert**
+**Team: Solution_Expert**
 *Building technology for rural India*
