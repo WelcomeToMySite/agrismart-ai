@@ -147,7 +147,7 @@ EasyAgri-AI/
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/WelcomeToMySite/agrismart-ai.git
+git clone https://github.com/WelcomeToMySite/EasyAgri-AI.git
 cd agrismart-ai
 ```
 
@@ -244,7 +244,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Contact
 
 - **Email:** pmm2024003@iiita.ac.in 
-- **Ph no :** 9073848777
+
 
 ## 🙏 Acknowledgments 🙏
 
