@@ -208,7 +208,7 @@ test: add integration tests for API
 ## Project Structure
 
 ```
-agrismart-ai/
+EasyAgri-AI/
 ├── mobile-app/           # React Native mobile app
 │   ├── src/
 │   │   ├── components/   # Reusable components
