@@ -1,4 +1,4 @@
-# Design Document - AgriSmart AI
+# Design Document - EasyAgri AI
 
 ## 1. System Architecture
 
