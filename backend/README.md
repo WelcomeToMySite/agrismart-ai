@@ -1,6 +1,6 @@
-# AgriSmart AI - Backend
+# EasyAgri-AI - Backend
 
-FastAPI-based backend for AgriSmart AI platform.
+FastAPI-based backend for EasyAgri-AI platform.
 
 ## Features
 
