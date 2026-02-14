@@ -147,7 +147,7 @@ agrismart-ai/
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourteam/agrismart-ai.git
+git clone https://github.com/WelcomeToMySite/agrismart-ai.git
 cd agrismart-ai
 ```
 
