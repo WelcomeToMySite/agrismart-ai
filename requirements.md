@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**Project Name:** AgriSmart AI - Intelligent Farming Assistant for Rural India
+**Project Name:** EasyAgri AI - Intelligent Farming Assistant for Rural India
 
 **Problem Statement:** AI for Rural Innovation & Sustainable Systems
 
@@ -22,7 +22,7 @@ Rural farmers in India face multiple challenges:
 
 ## Solution Overview
 
-AgriSmart AI is a comprehensive AI-powered mobile and web platform that empowers rural farmers with:
+EasyAgri AI is a comprehensive AI-powered mobile and web platform that empowers rural farmers with:
 - Real-time crop health monitoring using computer vision
 - Personalized farming recommendations based on soil, weather, and crop data
 - Market price predictions and optimal selling time suggestions
