@@ -1,4 +1,4 @@
-# AgriSmart AI - Intelligent Farming Assistant for Rural India
+# EasyAgri AI - Intelligent Farming Assistant for Rural India
 
 [![AWS](https://img.shields.io/badge/AWS-AI%20Services-orange)](https://aws.amazon.com/)
 [![Hackathon](https://img.shields.io/badge/Hackathon-AI%20for%20Bharat-green)](https://hack2skill.com/)
@@ -12,7 +12,7 @@ Rural farmers in India face critical challenges including limited access to agri
 
 ## 💡 Solution Overview
 
-AgriSmart AI is a mobile and web platform that empowers rural farmers with:
+EasyAgri AI is a mobile and web platform that empowers rural farmers with:
 
 - 🌱 **AI-Powered Crop Health Monitoring** - Disease detection using computer vision (85%+ accuracy)
 - 💧 **Smart Irrigation Management** - Weather-based scheduling saves 30% water
@@ -120,7 +120,7 @@ AgriSmart AI is a mobile and web platform that empowers rural farmers with:
 ## 📁 Repository Structure
 
 ```
-agrismart-ai/
+EasyAgri-AI/
 ├── mobile-app/              # React Native mobile application
 ├── web-app/                 # React.js web application
 ├── backend/
