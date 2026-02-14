@@ -1,5 +1,5 @@
 /**
- * AgriSmart AI Mobile App
+ * EasyAgri-AI Mobile App
  * Entry Point
  */
 
@@ -18,13 +18,13 @@ function App() {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#4CAF50" />
       <View style={styles.header}>
-        <Text style={styles.title}>🌾 AgriSmart AI</Text>
+        <Text style={styles.title}>🌾 EasyAgri-AI</Text>
         <Text style={styles.subtitle}>Intelligent Farming Assistant</Text>
       </View>
 
       <View style={styles.content}>
         <Text style={styles.welcomeText}>
-          Welcome to AgriSmart AI
+          Welcome to EasyAgri-AI
         </Text>
         <Text style={styles.description}>
           Empowering rural farmers through AI technology
