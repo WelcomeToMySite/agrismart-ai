@@ -12,7 +12,7 @@
 
 EasyAgri AI is a comprehensive mobile and web platform that addresses critical challenges faced by rural farmers in India including limited access to agricultural expertise, inefficient resource management, difficulty in early disease detection, poor market intelligence, and climate change impacts.
 
-**Built for:** AI for Bharat Hackathon  
+**Built for:** AI for Bharat Hackathon 2026  
 **Track:** AI for Rural Innovation & Sustainable Systems
 
 ## ✨ Key Features
