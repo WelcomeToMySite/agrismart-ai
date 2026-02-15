@@ -256,8 +256,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Team
 
-- **Team Name:** Solution_Expert
-- **Hackathon:** AI for Bharat Hackathon 2025
+- **Team Name:** Solution_Expert [ SUBRATA PRAMANIK | Harshitha N | Khushi Verma ]
+- **Hackathon:** AI for Bharat Hackathon 2026
 
 ## 🙏 Acknowledgments
 
@@ -300,11 +300,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [X] farmers onboarded
 - [X]% positive user feedback
 
-## 📸 Media
 
-- [Demo Video](https://youtu.be/...)
-- [Pitch Deck](docs/pitch-deck.pdf)
-- [Case Studies](docs/case-studies/)
 
 ---
 
