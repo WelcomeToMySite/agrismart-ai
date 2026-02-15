@@ -1,44 +1,163 @@
 {
-  "name": "EasyAgri-AI-mobile",
+  "name": "easyagri-ai",
   "version": "1.0.0",
-  "description": "EasyAgri-AI Mobile Application",
+  "description": "AI-powered agricultural platform for rural farmers",
   "main": "index.js",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "e2e:android": "detox test -c android.emu.debug",
+    "e2e:ios": "detox test -c ios.sim.debug",
+    "build:android": "cd android && ./gradlew assembleRelease",
+    "clean": "cd android && ./gradlew clean && cd ../ios && pod deintegrate && rm -rf Pods Podfile.lock",
+    "postinstall": "cd ios && pod install"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-native": "^0.73.0",
+    "react": "18.2.0",
+    "react-native": "0.73.2",
+    
+    "// Navigation": "",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/stack": "^6.3.20",
-    "@reduxjs/toolkit": "^2.0.1",
+    "@react-navigation/bottom-tabs": "^6.5.11",
+    "@react-navigation/drawer": "^6.6.6",
+    "react-native-screens": "^3.29.0",
+    "react-native-safe-area-context": "^4.8.2",
+    "react-native-gesture-handler": "^2.14.1",
+    "react-native-reanimated": "^3.6.1",
+    
+    "// State Management": "",
+    "redux": "^5.0.1",
     "react-redux": "^9.0.4",
-    "axios": "^1.6.2",
-    "react-native-voice": "^3.2.4",
-    "react-native-camera": "^4.2.1",
+    "@reduxjs/toolkit": "^2.0.1",
+    "redux-persist": "^6.0.0",
+    "@react-native-async-storage/async-storage": "^1.21.0",
+    
+    "// AWS Services": "",
+    "aws-amplify": "^6.0.10",
+    "@aws-amplify/auth": "^6.0.10",
+    "@aws-amplify/storage": "^6.0.10",
+    "@aws-amplify/api": "^6.0.10",
+    "@aws-amplify/predictions": "^6.0.10",
+    
+    "// AI/ML": "",
+    "@tensorflow/tfjs": "^4.15.0",
+    "@tensorflow/tfjs-react-native": "^0.8.0",
+    "expo-gl": "^13.6.0",
+    
+    "// UI Components": "",
+    "react-native-paper": "^5.11.6",
+    "react-native-vector-icons": "^10.0.3",
+    "react-native-elements": "^3.4.3",
+    "react-native-linear-gradient": "^2.8.3",
+    "react-native-svg": "^14.1.0",
+    "react-native-charts-wrapper": "^0.5.11",
+    
+    "// Camera & Image": "",
     "react-native-image-picker": "^7.1.0",
-    "react-native-geolocation-service": "^5.3.1",
+    "react-native-image-crop-picker": "^0.40.0",
+    "react-native-fast-image": "^8.6.3",
+    
+    "// Voice & Audio": "",
+    "@react-native-voice/voice": "^3.2.4",
+    "react-native-tts": "^4.1.0",
+    "react-native-sound": "^0.11.2",
+    
+    "// Location & Maps": "",
+    "react-native-maps": "^1.10.0",
+    "@react-native-community/geolocation": "^3.2.1",
+    "react-native-geocoding": "^0.5.0",
+    
+    "// Network & API": "",
+    "axios": "^1.6.5",
+    "@react-native-community/netinfo": "^11.2.0",
+    
+    "// Notifications": "",
+    "@react-native-firebase/app": "^19.0.0",
+    "@react-native-firebase/messaging": "^19.0.0",
+    "react-native-push-notification": "^8.1.1",
+    
+    "// Forms & Validation": "",
+    "formik": "^2.4.5",
+    "yup": "^1.3.3",
+    
+    "// Date & Time": "",
+    "moment": "^2.30.1",
+    "react-native-date-picker": "^4.4.1",
+    
+    "// Utils": "",
+    "lodash": "^4.17.21",
+    "react-native-device-info": "^10.12.0",
+    "react-native-permissions": "^4.1.0",
+    "react-native-share": "^10.0.2",
+    "react-native-dotenv": "^3.4.10",
+    
+    "// Storage": "",
+    "react-native-fs": "^2.20.0",
     "react-native-sqlite-storage": "^6.0.1",
-    "react-native-vector-icons": "^10.0.3"
+    
+    "// PDF & Documents": "",
+    "react-native-pdf": "^6.7.3",
+    "react-native-document-picker": "^9.1.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.5",
-    "@babel/preset-env": "^7.23.5",
-    "@babel/runtime": "^7.23.5",
-    "@react-native/eslint-config": "^0.73.1",
-    "@react-native/metro-config": "^0.73.2",
-    "@testing-library/react-native": "^12.4.1",
+    "@babel/core": "^7.23.7",
+    "@babel/preset-env": "^7.23.7",
+    "@babel/runtime": "^7.23.7",
+    "@react-native/babel-preset": "^0.73.19",
+    "@react-native/eslint-config": "^0.73.2",
+    "@react-native/metro-config": "^0.73.3",
+    "@react-native/typescript-config": "^0.73.1",
+    "@tsconfig/react-native": "^3.0.3",
+    "@types/react": "^18.2.48",
+    "@types/react-test-renderer": "^18.0.7",
     "babel-jest": "^29.7.0",
-    "eslint": "^8.55.0",
+    "eslint": "^8.56.0",
     "jest": "^29.7.0",
-    "metro-react-native-babel-preset": "^0.77.0",
-    "react-test-renderer": "^18.2.0"
+    "prettier": "^3.1.1",
+    "react-test-renderer": "18.2.0",
+    "typescript": "^5.3.3",
+    "detox": "^20.16.2"
+  },
+  "jest": {
+    "preset": "react-native",
+    "setupFilesAfterEnv": ["<rootDir>/jest.setup.js"],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-native|@react-native|@react-navigation|react-native-vector-icons)/)"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/**/*.test.{js,jsx}",
+      "!src/index.js"
+    ]
   },
   "engines": {
-    "node": ">=18"
-  }
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "agriculture",
+    "ai",
+    "farming",
+    "react-native",
+    "mobile-app",
+    "rural-development",
+    "crop-disease-detection",
+    "smart-irrigation",
+    "market-intelligence"
+  ],
+  "author": "EasyAgri AI Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WelcomeToMySite/EasyAgri-AI.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WelcomeToMySite/EasyAgri-AI/issues"
+  },
+  "homepage": "https://easy-agri-ai.vercel.app"
 }
