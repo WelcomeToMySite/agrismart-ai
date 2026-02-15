@@ -1,20 +1,9 @@
-# Node.js
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-package-lock.json
-yarn.lock
-
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
-env/
-venv/
-ENV/
 build/
 develop-eggs/
 dist/
@@ -27,117 +16,189 @@ parts/
 sdist/
 var/
 wheels/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
-# React Native
-.expo/
-.expo-shared/
-*.jks
-*.p8
-*.p12
-*.key
-*.mobileprovision
-*.orig.*
-web-build/
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv
 
-# macOS
-.DS_Store
-*.pem
-
-# Android
-*.apk
-*.ap_
-*.aab
-*.dex
-*.class
-bin/
-gen/
-out/
-.gradle/
-build/
-local.properties
-*.iml
-.idea/
-*.hprof
-.cxx/
-captures/
-
-# iOS
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata/
-*.xccheckout
-*.moved-aside
-DerivedData
-*.hmap
-*.ipa
-*.xcuserstate
-ios/.xcode.env.local
-Pods/
-
-# VSCode
+# IDE
 .vscode/
-*.code-workspace
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Environment Variables
+.env
+.env.local
+.env.production
+.env.*.local
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+migrations/
 
 # Logs
 logs/
 *.log
-
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# AWS
-.aws-sam/
-samconfig.toml
-
-# Terraform
-*.tfstate
-*.tfstate.*
-.terraform/
-.terraform.lock.hcl
+log/
 
 # ML Models (large files)
-*.h5
-*.pb
-*.ckpt
-*.pth
-*.pt
-*.onnx
-*.tflite
-models/
+ml_models/*.h5
+ml_models/*.pkl
+ml_models/*.joblib
+ml_models/*.pb
+*.hdf5
 
-# Data files
-*.csv
-*.json
-*.xml
-data/
-datasets/
+# Temporary Files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Flask
+instance/
+.webassets-cache
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# AWS
+.aws/
+*.pem
+
+# Backup Files
+*.bak
+*.backup
+
+# Compiled Files
+*.pyc
+*.pyo
+
+# Documentation
+docs/_build/
+site/
+
+# Node (if using any JS tools)
+node_modules/
+package-lock.json
 
 # OS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# Images (uploaded by users)
+uploads/
+static/uploads/
+media/
+
+# Cache
+.cache/
+*.cache
+
+# Secrets
+secrets/
+*.key
+*.crt
+*.pem
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# macOS
+.AppleDouble
+.LSOverride
+Icon
+
+# Windows
 Thumbs.db
+ehthumbs.db
 Desktop.ini
 
-# Test coverage
-coverage/
-.nyc_output/
-*.lcov
-
-# Misc
-*.swp
-*.swo
+# Linux
 *~
-.cache/
+.fuse_hidden*
+.directory
+.Trash-*
+
+# IDE - JetBrains
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Serverless
+.serverless/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# Local configuration
+config/local.py
+local_settings.py
+
+# Sentry
+.sentryclirc
