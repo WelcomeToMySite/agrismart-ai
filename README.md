@@ -20,6 +20,7 @@ EasyAgri AI is a mobile and web platform that empowers rural farmers with:
 - 🗣️ **Multilingual Voice Interface** - Accessibility for low-literacy users
 - ☁️ **Weather Forecasting** - Hyperlocal 7-day predictions with alerts
 - 👥 **Community Platform** - Knowledge sharing among farmers and experts
+- 🏛️ **Government Schemes Access** - Simplified discovery and application for subsidies, insurance, and support programs
 
 ## 🎯 Key Features
 
@@ -59,6 +60,18 @@ EasyAgri AI is a mobile and web platform that empowers rural farmers with:
 - Integration with farming calendar
 - Historical pattern analysis
 
+## 7. Government Schemes Integration
+
+- Browse 15+ central and state agricultural schemes
+- AI-powered eligibility matching based on farmer profile
+- Step-by-step application guidance in local language
+- Document upload assistance with OCR verification
+- Real-time application tracking and status updates
+- SMS/WhatsApp notifications for deadlines and approvals
+- Scheme benefits calculator (subsidy amounts, coverage)
+- Connect with agricultural officers for queries
+
+  
 ## 🏗️ Architecture
 
 ```
