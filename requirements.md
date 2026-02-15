@@ -10,7 +10,7 @@
 
 **Team Leader:** Subrata Pramanik
 
-**Hackathon:** AI for Bharat Hackathon 2025
+**Hackathon:** AI for Bharat Hackathon 2026
 
 **Track:** AI for Rural Innovation & Sustainable Systems
 
